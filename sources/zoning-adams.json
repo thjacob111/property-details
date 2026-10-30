@@ -1,0 +1,110 @@
+[
+  {
+    "jurisdiction": "Adams County (unincorporated)",
+    "kind": "county-unincorporated",
+    "county": "Adams",
+    "url": "https://services3.arcgis.com/4PNQOtAivErR7nbT/arcgis/rest/services/Zoning/FeatureServer/0",
+    "codeField": "ZONE_",
+    "descField": null,
+    "test": {"lon": -104.9602, "lat": 39.8361, "code": "I-1", "desc": null},
+    "verified": "2026-10-29",
+    "authority": "official",
+    "notes": "Owner AdamsCO_GIS; data last edited 2026-08-30. Covers the whole county: unincorporated polygons carry real zoning codes with CITY_NAME='Unincorporated'; each municipality is a single polygon whose ZONE_ is the upper-case city name (e.g. 'THORNTON') and CITY_NAME is the city. Treat ZONE_ == upper(CITY_NAME) as 'incorporated - query the city layer'. Municipal polygons present: Arvada, Aurora, Bennett, Brighton, Commerce City, Federal Heights, Lochbuie, Northglenn, Thornton, Westminster. No description field; LINK points to the county Development Standards and Regulations page."
+  },
+  {
+    "jurisdiction": "Thornton",
+    "kind": "city",
+    "county": "Adams",
+    "url": "https://maps.thorntonco.gov/citydevweb/rest/services/Zoning/MapServer/0",
+    "codeField": "DISTRICT",
+    "descField": null,
+    "test": {"lon": -104.9719, "lat": 39.8680, "code": "SFD-L", "desc": null},
+    "verified": "2026-10-29",
+    "authority": "official",
+    "notes": "City of Thornton ArcGIS Server (citydevweb). No description field; LINK holds a URL to the district page on thorntonco.gov. Other fields: ORDINANCE, ZONE_DATE, ZONED_FROM, CASE_NUM. Thornton also spans into Weld County; this layer covers the whole city. Ignore AGOL hits for 'Thornton zoning' owned by ssmma_master (Thornton, Illinois) and the Mead & Hunt consultant copy."
+  },
+  {
+    "jurisdiction": "Westminster",
+    "kind": "city",
+    "county": "Adams",
+    "url": "https://maps.cityofwestminster.us/server/rest/services/Planning/Zoning/FeatureServer/0",
+    "codeField": "ZONECODE",
+    "descField": "ZONEDESC",
+    "test": {"lon": -105.0475, "lat": 39.8609, "code": "PUD", "desc": "Planned Unit Devel."},
+    "verified": "2026-10-29",
+    "authority": "official",
+    "notes": "City of Westminster ArcGIS Server. NAME holds the PUD/development name (test returned 'SPYGLASSE POINTE'); also ORDINANCE, APPROVEDDATE. Much of the city is PUD, so ZONEDESC is often just 'Planned Unit Devel.' - NAME is the useful identifier. Layer covers the Jefferson County portion of Westminster too. Ignore 'VT Data - Westminster Zoning' (Westminster, Vermont)."
+  },
+  {
+    "jurisdiction": "Northglenn",
+    "kind": "city",
+    "county": "Adams",
+    "url": "https://services7.arcgis.com/JeS0Sns8Qnvm0GB9/arcgis/rest/services/GoGov_Parcels_view/FeatureServer/2",
+    "codeField": "ZoningCode",
+    "descField": null,
+    "test": {"lon": -104.9877, "lat": 39.9086, "code": "PD", "desc": null},
+    "verified": "2026-10-29",
+    "authority": "official",
+    "notes": "Owner NorthglennCO_GIS. Parcel-based (zoning stored per parcel polygon, layer 'City of Northglenn Zoning'); data last edited 2026-09-24. Codes follow the current UDC (AG, CA, CG, IN, MC, MN, OS, PD, PF, RM-1, RM-2, RS-1, RS-2). Alternate with identical codes but older data (2024-03-27): https://services7.arcgis.com/JeS0Sns8Qnvm0GB9/arcgis/rest/services/NorthglennZoning/FeatureServer/0. Do NOT use the ZoneCode field on GoGov_Parcels_view/0 - it holds legacy pre-UDC codes (returned 'R-3' where the zoning layer returns 'RM-1'). Also skip the 'Zoning' service in the same org (legacy ZONECODE/ZONEDIST parcel schema)."
+  },
+  {
+    "jurisdiction": "Commerce City",
+    "kind": "city",
+    "county": "Adams",
+    "url": "https://gisserver.c3gov.com/gisserver/rest/services/Open_Data/Commerce_City_Open_Data/MapServer/14",
+    "codeField": "ZONING_CODE",
+    "descField": "PUD_NAME",
+    "test": {"lon": -104.9300, "lat": 39.8130, "code": "C-2", "desc": null},
+    "verified": "2026-10-29",
+    "authority": "official",
+    "notes": "Commerce City open-data Parcels layer; zoning is stored per parcel. PUD_NAME is filled only for PUD parcels (e.g. 'TURNBERRY' at -104.84,39.89) - there is no general description field. Also carries LU_CURRENT / LU_ENTITLED / LU_FUTURE (land use, not zoning) and OWNER. ZONING_CODE values include non-zoning markers: ADCO (Adams County enclave), SPLT (split), UNK, ROW, and null. UPDATED_ZONING_CODE is empty everywhere at test time. Alternate parcel-zoning layer: https://gisserver.c3gov.com/gisserver/rest/services/Applications/PF_Zoning_tmp/MapServer/0 (same field). The legacy server maps.c3gov.com (PropertyLookup/ZoningDistrict, still listed on AGOL) times out - do not use."
+  },
+  {
+    "jurisdiction": "Brighton",
+    "kind": "city",
+    "county": "Adams",
+    "url": "https://maps.brightonco.gov/public/rest/services/Dept_Com_Dev/Public_Zoning_Layers/MapServer/4",
+    "codeField": "ZONE_Type",
+    "descField": null,
+    "test": {"lon": -104.8204, "lat": 39.9814, "code": "R-2", "desc": null},
+    "verified": "2026-10-29",
+    "authority": "official",
+    "notes": "City of Brighton ArcGIS Server, layer 'Zoning'. PUD_name / PDName hold the PUD name where applicable; also ORDINANCE, ORD_DATE, Case_File. Same service: layer 3 Zoning Overlays, layer 2 Future Land Use (not zoning). Brighton also extends into Weld County; layer covers the whole city. The older agiso.brightonco.gov server returned no JSON."
+  },
+  {
+    "jurisdiction": "Federal Heights",
+    "kind": "city",
+    "county": "Adams",
+    "url": "https://services2.arcgis.com/2gKap7KMz7fy1U4a/arcgis/rest/services/Federal_Heights_Zoning/FeatureServer/9",
+    "codeField": "local_zon",
+    "descField": null,
+    "test": {"lon": -105.0153, "lat": 39.8573, "code": "P-1", "desc": null},
+    "verified": "2026-10-29",
+    "authority": "third-party",
+    "notes": "NOT OFFICIAL. Federal Heights publishes no public GIS/zoning service (fedheights.org/planning has only PDF forms). This layer is a copy hosted by consultant Mead & Hunt, data last edited 2025-04-30; fields: jurisd, local_zon, date. Use as a best-effort answer and flag results as unofficial; confirm with Federal Heights Planning (https://www.fedheights.org/planning). The layer id is 9, not 0."
+  },
+  {
+    "jurisdiction": "Arvada",
+    "kind": "city",
+    "county": "Adams",
+    "url": "https://services1.arcgis.com/eQyVgDz2cjhzbzN7/arcgis/rest/services/Zoning/FeatureServer/0",
+    "codeField": "ZONING",
+    "descField": "DESCRIPTIO",
+    "test": {"lon": -105.0450, "lat": 39.8050, "code": "IL", "desc": "Light Industrial"},
+    "verified": "2026-10-29",
+    "authority": "official",
+    "notes": "Owner 'arvada' (City of Arvada); data last edited 2026-10-18. One layer for all of Arvada (Jefferson + Adams portions). Test point is in the Adams County portion (confirmed CITY_NAME='Arvada' in the Adams County layer; that portion spans roughly lon -105.053 to -105.040, lat 39.801 to 39.824). Second Adams test: -105.0470,39.8120 -> PUD. Also GEN_ZONING (general class), MAXIMUM_HE, UNITS, ALLOWED_US (URL). The separate 'Land_Use_Plan' service is comprehensive plan, not zoning."
+  },
+  {
+    "jurisdiction": "Bennett",
+    "kind": "city",
+    "county": "Adams",
+    "url": "https://services8.arcgis.com/YAV8LFovsNlTJPVD/arcgis/rest/services/Zoning_View/FeatureServer/3",
+    "codeField": "ZoningType",
+    "descField": "ZoningCode",
+    "test": {"lon": -104.4275, "lat": 39.7586, "code": "R-1", "desc": "Low-Density Residential District"},
+    "verified": "2026-10-29",
+    "authority": "official",
+    "notes": "Owner bennett_admin (Town of Bennett); public view, last edited 2026-10-08. Field names are SWAPPED: ZoningType holds the short code (R-1) and ZoningCode holds the district name. Layer 3 is base zoning; layers 0-2 are overlay districts (Commercial Mixed Use, Main Street-Downtown, Residential Mixed Use). Bennett spans Adams and Arapahoe counties; the layer covers the whole town. Source service (non-view) is .../Zoning/FeatureServer/3 with extra fields County, SubdivisionName, ZoningCodeLink."
+  }
+]

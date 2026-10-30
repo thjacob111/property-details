@@ -1,0 +1,189 @@
+[
+  {
+    "jurisdiction": "Aurora",
+    "kind": "city",
+    "county": "Arapahoe",
+    "url": "https://ags.auroragov.org/aurora/rest/services/OpenData/MapServer/20",
+    "codeField": "DISTRICT_ID",
+    "descField": "Dist_Name",
+    "test": {"lon": -104.8214, "lat": 39.7108, "code": "MU-R", "desc": "Mixed-Use Regional District"},
+    "verified": "2026-10-29",
+    "notes": "IMPORTANT: ags.auroragov.org returns HTTP 403 to the default Python-urllib User-Agent - send a browser-like User-Agent header (curl's default UA works). City of Aurora official OpenData MapServer, current code (post-Oct 2019); layer 257 is 'Former Zoning (pre-October 2019)' - do not use. Covers all of Aurora across Arapahoe/Adams/Douglas. Also verified Adams-County portion (-104.8466,39.7400 -> MU-FB 'Mixed-Use Fitzsimons Boundary District') and SE Aurora (-104.7130,39.5700 -> PD 'Planned Development', NAME='EAGLE BEND'). For PD polygons NAME holds the PD name; Zone_Subzone/SUBZONE hold subareas."
+  },
+  {
+    "jurisdiction": "Arapahoe County (unincorporated)",
+    "kind": "county-unincorporated",
+    "county": "Arapahoe",
+    "url": "https://gis.arapahoegov.com/arcgis/rest/services/ArapaMAP/MapServer/352",
+    "codeField": "ZONING",
+    "descField": null,
+    "test": {"lon": -104.88, "lat": 39.675, "code": "R-3", "desc": null},
+    "verified": "2026-10-29",
+    "notes": "County's own ArcGIS Server (ArapaMAP public viewer), layer 'Zoning - Unincorporated County'. Covers unincorporated land ONLY; returns no feature inside cities (Englewood test point returned 0). This layer holds only ACTIVE='Y' polygons (863). Alternate: CountyFeatureService/FeatureServer/24 has the same data plus 413 inactive/superseded polygons - if used, add where=ACTIVE='Y'. No description field; HYPERLINK points to the Land Development Code page for the district; CASE_NUMBER holds the rezoning case. Also verified Byers (-104.2275,39.7114 -> RR-A). Avoid third-party AGOL copies (tucker_lrewater, impactcommercial)."
+  },
+  {
+    "jurisdiction": "Douglas County (unincorporated, incl. Highlands Ranch)",
+    "kind": "county-unincorporated",
+    "county": "Douglas",
+    "url": "https://services.arcgis.com/seTexOicoRXDvRsJ/arcgis/rest/services/Zoning_View/FeatureServer/0",
+    "codeField": "ZONE_TYPE",
+    "descField": "FIRST_DESC",
+    "test": {"lon": -104.9692, "lat": 39.5536, "code": "PD", "desc": "PLANNED DEVELOPMENT"},
+    "verified": "2026-10-29",
+    "notes": "Douglas County GIS (org seTexOicoRXDvRsJ) hosted view; layers 0-3 are identical (934 features). Countywide polygons, but incorporated land is a placeholder: ZONE_TYPE='CTY', FIRST_DESC='INCORPORATED AREAS', TOWN_NAME=<city> - treat CTY as 'look up the municipal layer'. PD_Name holds the PD name (Highlands Ranch returns PD_Name='HIGHLANDS RANCH'; HR sub-planning areas are not in this layer). Also verified Franktown (-104.7525,39.3908 -> C 'COMMERCIAL'). Codes seen: A1,B,C,CMTY,CTY,D,ER,GI,HC,LI,LRR,LSB,MF,MI,NF,OS,PD,RR,SR."
+  },
+  {
+    "jurisdiction": "Centennial",
+    "kind": "city",
+    "county": "Arapahoe",
+    "url": "https://maps.centennialco.gov/arcgis/rest/services/Planning/Official_Zoning/FeatureServer/0",
+    "codeField": "ZONECLASS",
+    "descField": "ZONEDESC",
+    "test": {"lon": -104.93, "lat": 39.59, "code": "NC6", "desc": "Neighborhood Conservation, 6000sf min."},
+    "verified": "2026-10-29",
+    "notes": "City of Centennial own ArcGIS Server, Planning/Official_Zoning. Layer also carries setback/height/lot standards (MaxBuildingHeight, Minimum_Lot_Area, etc.) and a code URL (URL_1). MapServer/0 equivalent exists. A point at the civic center (-104.8433,39.5949) returned no feature (likely ROW gap) - expect misses on road right-of-way."
+  },
+  {
+    "jurisdiction": "Englewood",
+    "kind": "city",
+    "county": "Arapahoe",
+    "url": "https://services6.arcgis.com/2gwTlp6STLlfLYIT/arcgis/rest/services/Zoning_District_Boundaries/FeatureServer/0",
+    "codeField": "NEWZONE",
+    "descField": "DSCRPT",
+    "test": {"lon": -104.9946, "lat": 39.6545, "code": "MU-B-1", "desc": "Mixed Use Central Business District"},
+    "verified": "2026-10-29",
+    "notes": "City of Englewood AGOL org (fjohnson_englewoodgov org 2gwTlp6STLlfLYIT). Most recently edited district-polygon layer (2024-06). TYPE = Residential/Commercial/etc.; PUDNUM for PUDs. Also verified -104.9810,39.6400 -> R-1-C. Same-org alternates: Base_Zoning_District_Boundaries/FeatureServer/2 (same districts plus long code-change text fields) and Parcels_Zoning/FeatureServer/0 (parcel-level, NEWZONE field, edited 2025-11). Avoid third-party OkeefeA_AyresAGO 'Zoning2022'."
+  },
+  {
+    "jurisdiction": "Littleton",
+    "kind": "city",
+    "county": "Arapahoe",
+    "url": "https://services6.arcgis.com/lJUBf9F1fZJRB4zT/arcgis/rest/services/Zoning_District/FeatureServer/195",
+    "codeField": "ZONECLASS",
+    "descField": "ZONEDESC",
+    "test": {"lon": -105.0145, "lat": 39.615, "code": "DMU", "desc": "Downtown Mixed-Use"},
+    "verified": "2026-10-29",
+    "notes": "City of Littleton AGOL (gis_littleton). Layer id is 195, not 0. Current code (Unified Land Use Code districts, edited 2026-02); links to encodeplus code sections in LINK/BASE_DIST_DESC etc. Littleton spans Arapahoe/Douglas/Jefferson - layer covers whole city. Also verified -105.0,39.6 -> MLR 'Medium Lot Residential'. Do NOT use ZoningUpdateDRAFT (2021 draft) or LittletonZoning_GET_8_23_21 (stale). Planned-development overlays: Zoning_PDO/FeatureServer/194 and PlannedDevelopment/FeatureServer/203."
+  },
+  {
+    "jurisdiction": "Greenwood Village",
+    "kind": "city",
+    "county": "Arapahoe",
+    "url": "https://online.greenwoodvillage.com/server/rest/services/City/Website_Public/MapServer/28",
+    "codeField": "ZONING",
+    "descField": "ZONING_ORD",
+    "test": {"lon": -104.93, "lat": 39.62, "code": "R-.25 PUD", "desc": "Residential 0.25 PUD"},
+    "verified": "2026-10-29",
+    "notes": "City's own ArcGIS Server, Website_Public layer 'Zoning' (layer 27 is the colour-accessible duplicate). Parcel-based polygons: also returns FDP_PUD, SUBDIVISION, NEIGHBORHOOD, DESCRIPTION (actual use). Also verified -104.9028,39.6075 -> O-2 'Open Space'."
+  },
+  {
+    "jurisdiction": "Sheridan",
+    "kind": "city",
+    "county": "Arapahoe",
+    "url": "https://services8.arcgis.com/l2tzdU7MS2RitdZd/arcgis/rest/services/Zoning_dissolve/FeatureServer/0",
+    "codeField": "Dist_id",
+    "descField": "Dist_Name",
+    "test": {"lon": -105.0247, "lat": 39.6467, "code": "PUD (COM)", "desc": "Planned Unit Development (Commercial)"},
+    "verified": "2026-10-29",
+    "notes": "City of Sheridan AGOL org (planner_SheridanCO); this is the 'Zoning' layer of the city's official 'Zoning & Land Use' web map linked from ci.sheridan.co.us/443/Planning-Zoning (edited 2026-08). For PUDs Dist_Name may hold the PUD name instead of a district description (e.g. -105.013,39.648 -> Dist_id 'PUD', Dist_Name 'Broken Tee Golf Course'). Ordinance field holds the adopting ordinance."
+  },
+  {
+    "jurisdiction": "Glendale",
+    "kind": "city",
+    "county": "Arapahoe",
+    "url": null,
+    "codeField": null,
+    "descField": null,
+    "test": null,
+    "verified": null,
+    "notes": "No public queryable layer and no online zoning map. City states all property is zoned Planned Unit Development District (PUDD); zoning map available only on request from the City Clerk (glendale.co.us/156/Zoning). Fallback: return 'PUDD' for any point inside Glendale city limits; site-specific PUD terms require the City Clerk / Planning."
+  },
+  {
+    "jurisdiction": "Cherry Hills Village",
+    "kind": "city",
+    "county": "Arapahoe",
+    "url": null,
+    "codeField": null,
+    "descField": null,
+    "test": null,
+    "verified": null,
+    "notes": "No public ArcGIS zoning layer found (city AGOL org E0FqgLpXCssDIjiF has only trails/sewer/wildlife). Official Zoning Map is a PDF at cherryhillsvillage.com/392/Zoning-District-Maps (adopted by Ord. 7 Series 2019, amended by later rezonings); city says it is informational only. Districts are mainly R-1 (2.5 ac), R-2, R-3 (1 ac), R-4 (1/2 ac), O-1 etc. Fallback: PDF map or call Community Development 303-783-2721. AGOL 'Zoning' hits under 'Cherry Hill' are Canton, MI - ignore."
+  },
+  {
+    "jurisdiction": "Columbine Valley",
+    "kind": "city",
+    "county": "Arapahoe",
+    "url": null,
+    "codeField": null,
+    "descField": null,
+    "test": null,
+    "verified": null,
+    "notes": "No public ArcGIS zoning layer. Zoning map is Appendix A of the Zoning Code & Land Use Regulations (Nov 2020 PDF, columbinevalley.org/documents). Town uses a GovPilot GIS viewer (columbinevalley.org/maps), not ArcGIS REST. Districts: A, R-1, CC, MUPD, RPD, REPD, EPD. Fallback: PDF map or call the Town."
+  },
+  {
+    "jurisdiction": "Bow Mar",
+    "kind": "city",
+    "county": "Arapahoe",
+    "url": null,
+    "codeField": null,
+    "descField": null,
+    "test": null,
+    "verified": null,
+    "notes": "No public ArcGIS zoning layer. Zoning map PDF: townofbowmar.org/files/a98de9ba3/Exhibit+A-Town+of+Bow+Mar+Zoning+Map.pdf; code is Municipal Code Ch. 16 (Residential I/II, Recreational, Utility, Agricultural, PD). Town spans Arapahoe/Jefferson. Fallback: PDF map or call the Town Clerk."
+  },
+  {
+    "jurisdiction": "Foxfield",
+    "kind": "city",
+    "county": "Arapahoe",
+    "url": null,
+    "codeField": null,
+    "descField": null,
+    "test": null,
+    "verified": null,
+    "notes": "No public ArcGIS zoning layer. Only map found is a Board-approved zoning map PDF from March 2010 (siterepository.s3.amazonaws.com/00343201005130309458886.pdf) - may be stale. Districts: PD, VC (Village Commercial), RR (Large Lot Rural Residential), RR SUP. Town is overwhelmingly RR. Fallback: PDF map or call the Town."
+  },
+  {
+    "jurisdiction": "Lone Tree",
+    "kind": "city",
+    "county": "Douglas",
+    "url": "https://services7.arcgis.com/M6RDkiPo9JtEo7N6/arcgis/rest/services/Zoning/FeatureServer/1",
+    "codeField": "mun_code",
+    "descField": "mun_full",
+    "test": {"lon": -104.8879, "lat": 39.5495, "code": "SR3", "desc": "Suburban Residential, Subzone SR3"},
+    "verified": "2026-10-29",
+    "notes": "City of Lone Tree AGOL (GISAdmin@cityoflonetree.com). Layer id is 1 (layer 0 does not exist). planning_area holds PD name (e.g. 'Park Meadows', 'RidgeGate'); pd_doc links the PD document. Also verified -104.878,39.563 -> PD (Park Meadows) and -104.865,39.532 -> PD (RidgeGate). Older snapshot COLT_Zoning_July_2023 in same org - do not use."
+  },
+  {
+    "jurisdiction": "Parker",
+    "kind": "city",
+    "county": "Douglas",
+    "url": "https://services6.arcgis.com/gJ4Ua6egqE4IMu3C/arcgis/rest/services/Zoning_to_Web_Service/FeatureServer/2",
+    "codeField": "ZONING",
+    "descField": "PD_USE1",
+    "test": {"lon": -104.78, "lat": 39.5, "code": "PLANNED DEVELOPMENT", "desc": "SINGLE FAMILY DETACHED"},
+    "verified": "2026-10-29",
+    "notes": "Town of Parker AGOL (parkergis), public service (the *_Internal twin is not needed). ZONING holds the full district NAME, not a short code (values: AGRICULTURAL, CORRIDOR COMMERCIAL, DOWNTOWN EAST/WEST, LARGE-LOT RESIDENTIAL, LIGHT INDUSTRIAL, MIXED-USE COMMUNITY/NEIGHBORHOOD, MULTIFAMILY RESIDENTIAL, NEIGHBORHOOD COMMERCIAL, OPEN SPACE, PLANNED DEVELOPMENT, PUBLIC FACILITY, REGIONAL COMMERCIAL, DOUGLAS COUNTY). ZONING='DOUGLAS COUNTY' = unincorporated enclave -> fall through to Douglas County layer. PD_NAME/PD_DOC give the PD name and document (test: PD_NAME 'HORSESHOE RIDGE'). Also verified town hall -104.7614,39.5186 -> DOWNTOWN EAST. Layers 0 (Planned Developments) and 1 (Light Industrial Conservation District overlay) in same service."
+  },
+  {
+    "jurisdiction": "Castle Rock",
+    "kind": "city",
+    "county": "Douglas",
+    "url": "https://maps.crgov.com/web/rest/services/DataCatalog/CR_Zoning/MapServer/0",
+    "codeField": "ZONING_CODE",
+    "descField": "TYPE",
+    "test": {"lon": -104.8604, "lat": 39.3726, "code": "B", "desc": "BUSINESS / COMMERCIAL"},
+    "verified": "2026-10-29",
+    "notes": "Town of Castle Rock own ArcGIS Server (DataCatalog). ZONING field holds the district code or, for PDs, the PD name (e.g. -104.88,39.40 -> ZONING_CODE 'PD', ZONING 'MEADOWS THIRD AMENDMENT', TYPE 'PLANNED DEVELOPMENT', PDNUM 37). OVERLAY (e.g. DOWNTOWN), ZONING_URL and DA_URL also returned."
+  },
+  {
+    "jurisdiction": "Castle Pines",
+    "kind": "city",
+    "county": "Douglas",
+    "url": "https://services8.arcgis.com/UbfrjwJF0ZkVzVrn/arcgis/rest/services/Zoning_/FeatureServer/0",
+    "codeField": "PDCODE",
+    "descField": "Zoning",
+    "test": {"lon": -104.896, "lat": 39.471, "code": "PDU", "desc": "Planned Development"},
+    "verified": "2026-10-29",
+    "notes": "City of Castle Pines AGOL org (urlKey castlepines; publisher account jrhodes_civiclens). Coarse: one polygon per PD/area, not lot-level. Name holds the PD/area name (test: 'Castle Pines North'); zoning_ordinance_docs links the PD binder. Code values: A1, B, ER, PDPP, PDU. Note the 'Service Name' is Zoning_ with a trailing underscore."
+  }
+]
